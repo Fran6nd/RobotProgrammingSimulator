@@ -14,7 +14,7 @@ int main(int argc, char **argv)
     SDL_Window *window = SDL_CreateWindow("SDL2 Displaying Image",
                                           SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640, 480, 0);
     SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, 0);
-    load_resources(renderer);
+    robot_load_resources(renderer);
 
     Uint32 t1 = SDL_GetTicks();
     Uint32 t2 = SDL_GetTicks();
@@ -36,14 +36,14 @@ int main(int argc, char **argv)
         }
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
         SDL_RenderClear(renderer);
-        update_robot(&r, dt);
-        draw_robot(renderer, &r);
+        robot_update(&r, dt);
+        robot_draw(renderer, &r);
         SDL_RenderPresent(renderer);
     }
 
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
-    free_resources();
+    robot_free_resources();
 
     SDL_Quit();
 
