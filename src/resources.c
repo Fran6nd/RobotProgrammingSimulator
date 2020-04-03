@@ -15,7 +15,7 @@ void resources_free(ResourcesManager *rm)
     free(rm->images);
     rm->images_counter = 0;
 }
-void resources_load_image(SDL_Renderer *r, ResourcesManager *rm, char *path, int color_key)
+int resources_load_image(SDL_Renderer *r, ResourcesManager *rm, char *path, int color_key)
 {
     SDL_Surface *img = SDL_LoadBMP(path);
     if (color_key != -1)
@@ -29,7 +29,8 @@ void resources_load_image(SDL_Renderer *r, ResourcesManager *rm, char *path, int
     {
         rm->images = realloc(rm->images, sizeof(rm->images) * rm->images_counter);
     }
-    ResourceImage ri = {.image = SDL_CreateTextureFromSurface(r, img), .rect = {0, 0, 50, 50}};
+    ResourceImage ri = {.image = SDL_CreateTextureFromSurface(r, img), .rect = {0, 0, img->h, img->w}};
     rm->images[rm->images_counter - 1] = ri;
     SDL_FreeSurface(img);
+    return rm->images_counter - 1;
 }
