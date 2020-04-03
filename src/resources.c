@@ -1,38 +1,38 @@
 #include "resources.h"
 
-ResourcesManager resources_new_manager()
+void resources_init()
 {
-    ResourcesManager rm = {.images = NULL, .images_counter = 0};
-    return rm;
+    resources_manager.images = NULL;
+    resources_manager.images_counter = 0;
 }
-void resources_free(ResourcesManager *rm)
+void resources_free()
 {
     int i;
-    for (i = 0; i < rm->images_counter; i++)
+    for (i = 0; i < resources_manager.images_counter; i++)
     {
-        SDL_DestroyTexture(rm->images[i]);
+        SDL_DestroyTexture(resources_manager.images[i]);
     }
-    free(rm->images);
-    rm->images_counter = 0;
+    free(resources_manager.images);
+    resources_manager.images_counter = 0;
 }
-int resources_load_image(ResourcesManager *rm, SDL_Renderer *r, char *path, int color_key)
+int resources_load_image(SDL_Renderer *r, char *path, int color_key)
 {
     SDL_Surface *img = SDL_LoadBMP(path);
     if (color_key != -1)
         SDL_SetColorKey(img, 1, color_key);
-    rm->images_counter++;
-    if (rm->images_counter == 1)
+    resources_manager.images_counter++;
+    if (resources_manager.images_counter == 1)
     {
-        rm->images = malloc(sizeof(rm->images));
+        resources_manager.images = malloc(sizeof(SDL_Texture*));
     }
     else
     {
-        rm->images = realloc(rm->images, sizeof(rm->images) * rm->images_counter);
+        resources_manager.images = realloc(resources_manager.images, sizeof(SDL_Texture*) * resources_manager.images_counter);
     }
-    rm->images[rm->images_counter - 1] =SDL_CreateTextureFromSurface(r, img);
+    resources_manager.images[resources_manager.images_counter - 1] =SDL_CreateTextureFromSurface(r, img);
     SDL_FreeSurface(img);
-    return rm->images_counter - 1;
+    return resources_manager.images_counter - 1;
 }
-SDL_Texture * resources_get_image(ResourcesManager * rm, int id){
-    return rm->images[id];
+SDL_Texture * resources_get_image(int id){
+    return resources_manager.images[id];
 }

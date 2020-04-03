@@ -10,9 +10,11 @@ struct ResourcesManager{
     int images_counter;
 };
 
-ResourcesManager resources_new_manager();
-void resources_free(ResourcesManager *);
-int resources_load_image(ResourcesManager *, SDL_Renderer *, char *, int);
-SDL_Texture * resources_get_image(ResourcesManager *, int id);
+ResourcesManager resources_manager;
+
+void resources_init();
+void resources_free();
+int resources_load_image( SDL_Renderer *, char *, int);
+SDL_Texture * resources_get_image(int id);
 
 #endif

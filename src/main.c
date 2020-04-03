@@ -15,7 +15,6 @@ int main(int argc, char **argv)
     SDL_Window *window = SDL_CreateWindow("SDL2 Displaying Image",
                                           SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640, 480, 0);
     SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, 0);
-    ResourcesManager resources_manager = resources_new_manager();
     load_resources(renderer);
 
     Uint32 t1 = SDL_GetTicks();
