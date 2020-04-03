@@ -14,5 +14,6 @@ struct Instruction{
 struct Robot new_robot(Transform);
 void draw_robot(SDL_Renderer *r, struct Robot*);
 void update_robot(struct Robot*, struct Instruction, int);
-
+void load_resources(SDL_Renderer *r);
+void free_resources();
 #endif

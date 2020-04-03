@@ -14,10 +14,11 @@ int main(int argc, char **argv)
     SDL_Window *window = SDL_CreateWindow("SDL2 Displaying Image",
                                           SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640, 480, 0);
     SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, 0);
+    load_resources(renderer);
 
     Uint32 t1 = SDL_GetTicks();
     Uint32 t2 = SDL_GetTicks();
-    struct Robot r = new_robot(transform_new(100.0,100.0,0.0));
+    struct Robot r = new_robot(transform_new(50.0,50.0,0.0));
     while (!quit)
     {
         t2 = SDL_GetTicks();
@@ -41,6 +42,7 @@ int main(int argc, char **argv)
 
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
+    free_resources();
 
     SDL_Quit();
 
