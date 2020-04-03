@@ -19,7 +19,7 @@ struct Robot {
     double wheel_perimeter;
     struct Instruction instruction;
     double rps1, rps2;
-    vector wheel
+    vector wheel;
 };
 struct Robot new_robot(Transform);
 void robot_draw(SDL_Renderer *r, struct Robot*);
