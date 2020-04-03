@@ -1,16 +1,13 @@
 #include "robot.h"
 #include "transform.h"
 #include "vector.h"
+#include "resources.h"
 
-SDL_Texture *tank_img;
-SDL_Rect tank_rect = {0, 0, 50, 50};
+int img_id;
 
 void load_resources(SDL_Renderer *r)
 {
-    SDL_Surface *img = SDL_LoadBMP("rsc/robot_009e3f.bmp");
-    SDL_SetColorKey(img, 1, 0x009e3f);
-    tank_img = SDL_CreateTextureFromSurface(r, img);
-    SDL_FreeSurface(img);
+    img_id = resources_load_image(r, "rsc/robot_009e3f.bmp", 0x009e3f);
 }
 
 struct Robot new_robot(Transform t){
@@ -22,15 +19,12 @@ struct Robot new_robot(Transform t){
     return r;
 }
 void robot_draw(SDL_Renderer *r, struct Robot*rb){
+    SDL_Rect tank_rect = {0, 0, 50, 50};
     tank_rect.x = rb->transform.position.x - 25;
     tank_rect.y = rb->transform.position.y - 25;
     SDL_Point center = {25, 25};
 
-    SDL_RenderCopyEx(r, tank_img, NULL, &tank_rect, rb->transform.rotation - 90, &center, 0);
-}
-void free_resources()
-{
-    SDL_DestroyTexture(tank_img);
+    SDL_RenderCopyEx(r, resources_get_image(img_id), NULL, &tank_rect, rb->transform.rotation - 90, &center, 0);
 }
 void robot_update(struct Robot* r, double dt){
     vector d1, d2;

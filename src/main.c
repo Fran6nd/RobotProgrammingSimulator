@@ -44,7 +44,7 @@ int main(int argc, char **argv)
 
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
-    free_resources();
+    resources_free();
 
     SDL_Quit();
 
