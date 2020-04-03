@@ -1,5 +1,6 @@
 #include "robot.h"
 #include "transform.h"
+#include "vector.h"
 
 SDL_Texture *tank_img;
 SDL_Rect tank_rect = {0, 0, 50, 50};
@@ -15,6 +16,9 @@ void load_resources(SDL_Renderer *r)
 struct Robot new_robot(Transform t){
     struct Robot r;
     r.transform = t;
+    r.wheel_perimeter = 31.42;
+    r.rps1 = 0;
+    r.rps2 = 0;
     return r;
 }
 void draw_robot(SDL_Renderer *r, struct Robot*rb){
@@ -27,4 +31,11 @@ void draw_robot(SDL_Renderer *r, struct Robot*rb){
 void free_resources()
 {
     SDL_DestroyTexture(tank_img);
+}
+void update_robot(struct Robot* r, double dt){
+    vector d1, d2;
+    d1.y = r->wheel_perimeter * dt * r->rps1;
+    d2.y = r->wheel_perimeter * dt * r->rps2;
+    d1.x = 5;
+    d2.x = -5;
 }

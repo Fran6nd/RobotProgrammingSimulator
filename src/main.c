@@ -36,6 +36,7 @@ int main(int argc, char **argv)
         }
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
         SDL_RenderClear(renderer);
+        update_robot(&r, dt);
         draw_robot(renderer, &r);
         SDL_RenderPresent(renderer);
     }
