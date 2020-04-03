@@ -5,11 +5,14 @@
 
 #include "transform.h"
 
-struct robot {
+struct Robot {
     struct Transform transform;
+};
+struct Instruction{
+    int m1, m2, dir1, dir2;
 };
 struct robot new_robot(Transform);
 void draw_robot(SDL_Renderer *r, struct robot*);
-void update_robot(struct robot*, int);
+void update_robot(struct Robot*, struct Instruction, int);
 
 #endif
