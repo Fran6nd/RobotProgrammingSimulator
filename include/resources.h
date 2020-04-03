@@ -18,5 +18,6 @@ struct ResourcesManager{
 ResourcesManager resources_new_manager();
 void resources_free(ResourcesManager *);
 int resources_load_image(SDL_Renderer *, ResourcesManager *, char *, int);
+ResourceImage resources_get_image(ResourcesManager *, int id);
 
 #endif

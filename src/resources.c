@@ -34,3 +34,6 @@ int resources_load_image(SDL_Renderer *r, ResourcesManager *rm, char *path, int 
     SDL_FreeSurface(img);
     return rm->images_counter - 1;
 }
+ResourceImage resources_get_image(ResourcesManager * rm, int id){
+    return rm->images[id];
+}

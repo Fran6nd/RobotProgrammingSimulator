@@ -5,7 +5,7 @@
 SDL_Texture *tank_img;
 SDL_Rect tank_rect = {0, 0, 50, 50};
 
-void robot_load_resources(SDL_Renderer *r)
+void load_resources(SDL_Renderer *r)
 {
     SDL_Surface *img = SDL_LoadBMP("rsc/robot_009e3f.bmp");
     SDL_SetColorKey(img, 1, 0x009e3f);
@@ -28,7 +28,7 @@ void robot_draw(SDL_Renderer *r, struct Robot*rb){
 
     SDL_RenderCopyEx(r, tank_img, NULL, &tank_rect, rb->transform.rotation - 90, &center, 0);
 }
-void robot_free_resources()
+void free_resources()
 {
     SDL_DestroyTexture(tank_img);
 }
