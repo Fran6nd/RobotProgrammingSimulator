@@ -17,8 +17,7 @@ int main(int argc, char **argv)
 
     Uint32 t1 = SDL_GetTicks();
     Uint32 t2 = SDL_GetTicks();
-    struct Transform t = transform_new(100.0,100.0,0.0);
-    struct Robot r = new_robot(t);
+    struct Robot r = new_robot(transform_new(100.0,100.0,0.0));
     while (!quit)
     {
         t2 = SDL_GetTicks();
@@ -36,6 +35,7 @@ int main(int argc, char **argv)
         }
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
         SDL_RenderClear(renderer);
+        draw_robot(renderer, &r);
         SDL_RenderPresent(renderer);
     }
 
