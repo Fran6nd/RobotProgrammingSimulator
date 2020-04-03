@@ -1,2 +1,5 @@
 all:
-	gcc src/main.c -Iinclude -Isubmodules/c_geometry/include  -lSDL2-2.0 -o robotsimulator
+	gcc -g src/main.c src/robot.c submodules/c_geometry/src/transform.c\
+	 submodules/c_geometry/src/vector.c\
+	 -Iinclude -Isubmodules/c_geometry/include\
+	   -lSDL2-2.0 -lm -ldl -o robotsimulator
