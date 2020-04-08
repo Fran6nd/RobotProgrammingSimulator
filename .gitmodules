@@ -7,3 +7,6 @@
 [submodule "submodules/-f"]
 	path = submodules/-f
 	url = git@github.com:Fran6nd/c_geometry.git
+[submodule "submodules/c_resources_manager"]
+	path = submodules/c_resources_manager
+	url = git@github.com:Fran6nd/c_resources_manager.git
