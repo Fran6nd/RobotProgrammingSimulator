@@ -1,7 +1,7 @@
 #include "robot.h"
 #include "transform.h"
 #include "vector.h"
-#include "resources.h"
+#include "resources_manager.h"
 
 int img_id;
 

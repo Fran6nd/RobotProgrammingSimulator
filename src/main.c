@@ -3,7 +3,7 @@
 
 #include "transform.h"
 #include "robot.h"
-#include "resources.h"
+#include "resources_manager.h"
 
 int main(int argc, char **argv)
 {
